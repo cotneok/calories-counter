@@ -1,0 +1,34 @@
+<h1 align="center">Welcome to <%= @user.username %>'s page</h1>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    
+  </div>
+</div>
+<h4 align="center"><%= @user.username %>'s meals</h4>
+<div class="center">
+  <div class="row">
+  <div class="col-12">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name of Food</th>
+          <th scope="col">Date Eaten</th>
+          <th scope="col">Time Eaten</th>
+          <th scope="col">Calories Consumed</th>
+        </tr>
+      </thead>
+      <tbody>
+		 <tr>
+ 		 <% @user.meals.each do |meal| %>
+ 		   <td><%= meal.name %></td>
+		   <td><%= meal.date %></td>
+		   <td><%= meal.time.strftime("%I:%M%p") %></td>
+		   <td><%= meal.calories %></td>
+		 </tr>
+         <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
