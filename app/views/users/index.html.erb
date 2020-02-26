@@ -6,7 +6,7 @@
         <div class="well col-md-12 col-md-offset-4">
           <li><%= link_to gravatar_for(user), user_path(user) %></li>
           <li class="article-title">
-            <%= link_to user.username, user_path(user) %>
+            <%= link_to user.username, user_path(user), style: "background-color: transparent !important;"%>
           </li>
           <li><small><%= pluralize(user.meals.count, "meal") if user.meals %></small></li>
           <%# if logged_in? and current_user.admin? %>
