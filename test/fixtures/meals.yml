@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2020-02-26
+  time: 2020-02-26 22:47:00
+  calories: 1
+
+two:
+  name: MyString
+  date: 2020-02-26
+  time: 2020-02-26 22:47:00
+  calories: 1
