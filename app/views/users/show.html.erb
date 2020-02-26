@@ -25,9 +25,9 @@
 		   <td><%= meal.date %></td>
 		   <td><%= meal.time.strftime("%I:%M%p") %></td>
 		   <td><%= meal.calories %></td>
-		   <td><%= link_to 'Show', meal %></td>
-           <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-           <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		   <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
+           <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-success"  %></td>
+           <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
 		 </tr>
          <% end %>
       </tbody>
@@ -36,4 +36,4 @@
 </div>
 </div>
 
-<%= link_to 'New Meal', new_meal_path %>
+<%= link_to 'New Meal', new_meal_path, class: "btn btn-lg btn-success" %>
