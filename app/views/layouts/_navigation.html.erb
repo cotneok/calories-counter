@@ -19,8 +19,8 @@
               Your Profile <%= "Admin" if logged_in?(:site_admin) %><span class="caret">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style = "background-color: transparent !important;">
-              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "Edit your profile", edit_user_path(current_user) %></a>
-              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "View your profile", user_path(current_user) %></a>
+              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "Edit your profile", edit_user_path(current_user) if logged_in?(:site_admin, :user_manager) %></a>
+              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "View your profile", user_path(current_user) if logged_in?(:site_admin, :user_manager, :user) %></a>
           </div>
         </li>
       </ul>

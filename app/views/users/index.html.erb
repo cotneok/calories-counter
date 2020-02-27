@@ -13,9 +13,16 @@
          <!--  <li><%#= link_to "Delete this user", user_path(user), method: :delete,
               data: { confirm: "Are you sure you want to delete the user and all their meals?" } %></li>
           <%# end %> -->
-          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin, :user_manager)%>
+            <td><%= link_to 'Show', user_path(user) %></td>
+            <% if logged_in?(:site_admin, :user_manager) %>
+              <td><%= link_to 'Edit', edit_user_path(user) %></td>
+              <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin, :user_manager)%>
+            <% end %>
         </div>
       </div>
     </ul>
 <% end %>
 </div>
+
+
+<div align="center"><%= link_to 'New User', new_user_path if logged_in?(:site_admin, :user_manager) %></div>
