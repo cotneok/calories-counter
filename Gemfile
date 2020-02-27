@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'petergate', '~> 2.0', '>= 2.0.1'
 
 
 # Use ActiveStorage variant
