@@ -16,24 +16,18 @@
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "background-color: transparent !important;">
-            Dropdown
+              Your Profile <%= "Admin" if logged_in?(:site_admin) %><span class="caret">
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style = "background-color: transparent !important;">
+              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "Edit your profile", edit_user_path(current_user) %></a>
+              <a class="dropdown-item" href="#" style = "background-color: transparent !important;"><%= link_to "View your profile", user_path(current_user) %></a>
           </div>
         </li>
       </ul>
-      <ul class="navbar-nav mr-auto">
         <li class="btn">
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-xs btn-danger" %>
-        </li>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-xs btn-danger" %>
+          </li>
+      </div>
     </div>
   </div>
 </nav>
