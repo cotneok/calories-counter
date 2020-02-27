@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	access user: [:show, :index],  [:user_manager, :site_admin] => :all
+
 	def index 
 		@users = User.all
 	end 

@@ -1,5 +1,6 @@
 class MealsController < ApplicationController
   before_action :set_meal, only: [:show, :edit, :update, :destroy]
+  access user: [:show, :index, :create, :update, :destroy, :new, :edit], user_manager: {except: [:destroy]}, site_admin: :all
 
   # GET /meals
   # GET /meals.json
