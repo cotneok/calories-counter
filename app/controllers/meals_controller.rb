@@ -29,7 +29,7 @@ class MealsController < ApplicationController
     @meal.user = current_user
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to user_path(current_user.id), notice: 'Meal was successfully created.' }
+        format.html { redirect_to meals_path, notice: 'Meal was successfully created.' }
         format.json { render :show, status: :created, location: @meal }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class MealsController < ApplicationController
   def update
     respond_to do |format|
       if @meal.update(meal_params)
-        format.html { redirect_to user_path(current_user.id), notice: 'Meal was successfully updated.' }
+        format.html { redirect_to meals_path, notice: 'Meal was successfully updated.' }
         format.json { render :show, status: :ok, location: @meal }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class MealsController < ApplicationController
   def destroy
     @meal.destroy
     respond_to do |format|
-      format.html { redirect_to user_path(current_user.id), notice: 'Meal was successfully destroyed.' }
+      format.html { redirect_to meals_path, notice: 'Meal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +70,6 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:name, :date, :time, :calories)
+      params.require(:meal).permit(:name, :date, :calories)
     end
 end

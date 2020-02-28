@@ -12,8 +12,7 @@
       <thead>
         <tr>
           <th scope="col">Name of Food</th>
-          <th scope="col">Date Eaten</th>
-          <th scope="col">Time Eaten</th>
+          <th scope="col">Date and Time Eaten</th>
           <th scope="col">Calories Consumed</th>
           <th colspan="3" class="text-center">Actions</th>
         </tr>
@@ -22,8 +21,7 @@
 		 <tr>
  		 <% @user.meals.each do |meal| %>
  		   <td><%= meal.name %></td>
-		   <td><%= meal.date %></td>
-		   <td><%= meal.time.strftime("%I:%M%p") %></td>
+		   <td><%= meal.date.strftime('%Y-%m-%d %H:%M %p') %></td>
 		   <td><%= meal.calories %></td>
 		   <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
            <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-success"  %></td>

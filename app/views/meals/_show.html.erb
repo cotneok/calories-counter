@@ -7,12 +7,7 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @meal.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @meal.time %>
+  <%= @meal.date.strftime('%Y-%m-%d %H:%M %p') %>
 </p>
 
 <p>
