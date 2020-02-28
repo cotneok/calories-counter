@@ -8,22 +8,22 @@ class MealsController < ApplicationController
     @meals = Meal.all
   end
 
-  def search
-    @user = current_user
-    if (params[:q1].blank? || params[:q2].blank? || params[:q3].blank? ||params[:q4].blank?)
-        @meal = Meal.all
-       flash[:notice] = "Please fill in blank fields"
-     else 
-        date1 = params[:q1].split("-")
-        date2 = params[:q3].split("-")
-        time1 = params[:q2].split(":")
-        time2 = params[:q4].split(":")
-        period1 = DateTime.new(date1[0].to_i, date1[1].to_i,date1[2].to_i, time1[0].to_i, time1[1].to_i)
-        period2 = DateTime.new(date2[0].to_i, date2[1].to_i, date2[2].to_i, time2[0].to_i, time2[1].to_i)
-        all = Meal.all
-        @meal = all.search(all, period1, period2)
-    end
-  end 
+  # def search
+  #   @user = current_user
+  #   if (params[:q1].blank? || params[:q2].blank? || params[:q3].blank? ||params[:q4].blank?)
+  #       @meal = Meal.all
+  #      flash[:notice] = "Please fill in blank fields"
+  #    else 
+  #       date1 = params[:q1].split("-")
+  #       date2 = params[:q3].split("-")
+  #       time1 = params[:q2].split(":")
+  #       time2 = params[:q4].split(":")
+  #       period1 = DateTime.new(date1[0].to_i, date1[1].to_i,date1[2].to_i, time1[0].to_i, time1[1].to_i)
+  #       period2 = DateTime.new(date2[0].to_i, date2[1].to_i, date2[2].to_i, time2[0].to_i, time2[1].to_i)
+  #       all = Meal.all
+  #       @meal = all.search(all, period1, period2)
+  #   end
+  #end 
 
   # GET /meals/1
   # GET /meals/1.json
