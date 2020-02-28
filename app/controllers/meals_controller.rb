@@ -1,12 +1,22 @@
 class MealsController < ApplicationController
   before_action :set_meal, only: [:show, :edit, :update, :destroy]
-  access user: [:show, :index, :create, :update, :destroy, :new, :edit], user_manager: {except: [:destroy]}, site_admin: :all
+  access user: [:show, :search, :index, :create, :update, :destroy, :new, :edit], user_manager: {except: [:destroy]}, site_admin: :all
 
   # GET /meals
   # GET /meals.json
   def index
     @meals = Meal.all
   end
+
+  def search
+    @user = current_user
+    if (params[:q1].blank? || params[:q2].blank?)
+        @meal = Meal.all
+       flash[:notice] = "Please fill in blank fields"
+     else 
+        @meal = Meal.where("date >= :start_date AND date <= :end_date",{start_date: params[:q1], end_date: params[:q2]})
+    end
+  end 
 
   # GET /meals/1
   # GET /meals/1.json
