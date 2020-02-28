@@ -10,11 +10,15 @@ class MealsController < ApplicationController
 
   def search
     @user = current_user
-    if (params[:q1].blank? || params[:q2].blank?)
+    if (params[:q1].blank? || params[:q2].blank? || params[:q3].blank? || params[:q4].blank?)
         @meal = Meal.all
        flash[:notice] = "Please fill in blank fields"
      else 
-        @meal = Meal.where("date >= :start_date AND date <= :end_date",{start_date: params[:q1], end_date: params[:q2]})
+        q1 = params[:q1].split("-")
+        q3 = params[:q3].split("-")
+        q2 = params[:q2].split(":")
+        q4 = params[:q4].split(":")
+        @meal = Meal.where("date >= :start_date AND date <= :end_date",{ start_date: DateTime.new(q1[0].to_i, q1[1].to_i, q1[2].to_i, q2[0].to_i, q2[1].to_i) , end_date: DateTime.new(q3[0].to_i, q3[1].to_i, q3[2].to_i, q4[0].to_i, q4[1].to_i)})
     end
   end 
 

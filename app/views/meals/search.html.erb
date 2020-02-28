@@ -3,9 +3,11 @@
 <form class="form-inline my-2 my-lg-0" action="/search">
     <div class="field" align="center">
       <input class="form-control mr-sm-2" name = "q1" type="date" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" name = "q2" type="time" placeholder="Search" aria-label="Search">
     </div>
     <div class="field" align="center">
-      <input class="form-control mr-sm-2" name = "q2" type="date" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" name = "q3" type="date" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" name = "q4" type="time" placeholder="Search" aria-label="Search">
     </div>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
@@ -13,9 +15,9 @@
   <thead>
     <tr>
       <th scope="col">Name of Food</th>
-      <th scope="col">Date Eaten</th>
-      <th scope="col">Time Eaten</th>
+      <th scope="col">Date and Time Eaten</th>
       <th scope="col">Calories Consumed</th>
+      <th scope="col">Your Username</th>
       <th colspan="3" class="text-center">Actions</th>
     </tr>
   </thead>
@@ -28,11 +30,11 @@
          <td><%= meal.calories %></td>
          <td><%= meal.user.username %></td>
          <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
-             <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-success"  %></td>
-             <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
+         <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-success"  %></td>
+         <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
        </tr>
      <% end %>
-     <% end %>
+    <% end %>
   </tbody>
 </table>
 
