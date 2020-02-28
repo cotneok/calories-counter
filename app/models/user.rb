@@ -13,4 +13,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+ def total_calories
+    self.meals.inject(0){|sum,x| sum + x.calories}
+  end
+
+  def show_todays_meals
+    self.meals.where("date >= ?", DateTime.now.in_time_zone("Tbilisi").beginning_of_day)
+  end
 end
