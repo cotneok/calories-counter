@@ -24,9 +24,11 @@
           </div>
         </li>
       </ul>
+      <% if user_signed_in? %>
         <li class="btn">
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-xs btn-danger" %>
           </li>
+      <% end %>
       </div>
     </div>
   </div>
