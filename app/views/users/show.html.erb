@@ -4,10 +4,15 @@
     
   </div>
 </div>
-<h4 align="center"><%= @user.username %>'s meals</h4>
+
+<h4 align="center"><%= @user.username %>'s todays meals</h4>
 <div class="center">
   <div class="row">
   <div class="col-12">
+    <% if @user.meals.blank? %>
+      <p style="color:red" class="text-center" size="20">Zero calories taken, you have 2000 calories limit, so feel free to eat :)</p>
+    <% end %>
+
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -17,18 +22,39 @@
           <th colspan="3" class="text-center">Actions</th>
         </tr>
       </thead>
-      <tbody>
-		 <tr>
- 		 <% @user.meals.each do |meal| %>
- 		   <td><%= meal.name %></td>
-		   <td><%= meal.date.strftime('%Y-%m-%d %H:%M %p') %></td>
-		   <td><%= meal.calories %></td>
-		   <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
-           <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-success"  %></td>
-           <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
-		 </tr>
+      <% if @user.show_todays_meals.inject(0){|sum,x| sum + x.calories} < 2000 %>
+        <tbody>
+         <tr>
+          <% @user.show_todays_meals.each do |meal| %>
+          <p style="color:green" class="text-center" size="20">You are below 2000 calories, keep eating</p>
+           <td bgcolor="green"><%= meal.name %></td>
+           <td bgcolor="green"><%= meal.date.strftime('%Y-%m-%d %H:%M %p') %></td>
+           <td bgcolor="green"><%= meal.calories %></td>
+           <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
+           <% if meal.user == current_user or logged_in?(:site_admin) %>
+            <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-primary" %></td>
+            <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary" if logged_in?(:site_admin, :user_manager, :user) %></td>
+           <% end %>
+         </tr>
          <% end %>
-      </tbody>
+        </tbody>
+      <% else  %>
+        <tbody>
+         <tr>
+          <% @user.show_todays_meals.each do |meal| %>
+          <p style="color:red" class="text-center" size="20">You have exceeded daily norm of 2000 calories</p>
+           <td bgcolor="red"><%= meal.name %></td>
+           <td bgcolor="red"><%= meal.date.strftime('%Y-%m-%d %H:%M %p') %></td>
+           <td bgcolor="red"><%= meal.calories %></td>
+           <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
+           <% if meal.user == current_user or logged_in?(:site_admin) %>
+            <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-primary" %></td>
+            <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary" if logged_in?(:site_admin, :user_manager, :user) %></td>
+           <% end %>
+         </tr>
+         <% end %>
+        </tbody>
+      <% end %>
     </table>
   </div>
 </div>

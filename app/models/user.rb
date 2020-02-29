@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :show_todays_meals
   ############################################################################################
   ## PeterGate Roles                                                                        ##
   ## The :user role is added by default and shouldn't be included in this list.             ##
@@ -14,9 +15,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
- def total_calories
-    self.meals.inject(0){|sum,x| sum + x.calories}
-  end
 
   def show_todays_meals
     self.meals.where("date >= ?", DateTime.now.in_time_zone("Tbilisi").beginning_of_day)

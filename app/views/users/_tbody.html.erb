@@ -1,0 +1,15 @@
+
+<tbody>
+ <tr>
+  <% @user.show_todays_meals.each do |meal| %>
+   <td><%= meal.name %></td>
+   <td><%= meal.date.strftime('%Y-%m-%d %H:%M %p') %></td>
+   <td><%= meal.calories %></td>
+   <td><%= link_to 'Show', meal, class: "btn btn-xs btn-primary" %></td>
+   <% if meal.user == current_user or logged_in?(:site_admin) %>
+    <td><%= link_to 'Edit', edit_meal_path(meal), class: "btn btn-xs btn-primary" %></td>
+    <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary" if logged_in?(:site_admin, :user_manager, :user) %></td>
+   <% end %>
+ </tr>
+ <% end %>
+</tbody>
